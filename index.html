@@ -215,6 +215,28 @@ html[dir="rtl"] .terminal-screen,html[dir="rtl"] .terminal-input-row{direction:l
 .photo-frame{display:grid;place-items:center;overflow:visible}
 .photo-frame .profile-photo{width:100%!important;height:100%!important;max-width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 28%;border-radius:50%}
 
+  
+/* Premium portfolio additions: focused learning, credentials and subnet lab */
+.premium-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.premium-card{padding:22px;border:1px solid var(--line);border-radius:17px;background:var(--panel);min-width:0}
+.premium-card .premium-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(92,225,212,.1);color:var(--cyan);font-size:20px;margin-bottom:15px}
+.premium-card h3{font-size:15px;margin:0 0 8px}.premium-card p{font-size:12px;line-height:1.9;color:var(--muted);margin:0}
+.credential-note{display:flex;align-items:flex-start;gap:14px;padding:19px;border:1px dashed rgba(92,225,212,.35);border-radius:15px;background:rgba(92,225,212,.035);margin-top:18px}
+.credential-note b{display:block;font-size:13px;margin-bottom:4px}.credential-note p{margin:0;color:var(--muted);font-size:12px;line-height:1.8}
+.subnet-tool{margin-top:18px;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.subnet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}.subnet-head h3{margin:0;font-size:15px}
+.subnet-fields{display:grid;grid-template-columns:minmax(0,2fr) minmax(110px,1fr) auto;gap:10px;align-items:end}
+.subnet-fields label{display:grid;gap:6px;color:var(--muted);font-size:11px;font-weight:700}
+.subnet-fields input{width:100%;min-width:0;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font:600 13px Manrope,monospace}
+.subnet-fields button{padding:11px 16px;border:1px solid rgba(92,225,212,.4);border-radius:10px;background:rgba(92,225,212,.1);color:var(--cyan);font:800 12px Cairo,sans-serif;cursor:pointer}
+.subnet-result{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:15px}
+.subnet-result div{padding:12px;border-radius:10px;background:rgba(255,255,255,.035);min-width:0}
+.subnet-result small{display:block;color:var(--muted);font-size:10px;margin-bottom:4px}
+.subnet-result strong{display:block;font:700 12px ui-monospace,monospace;overflow-wrap:anywhere}
+.subnet-error{color:#ff9292;font-size:12px;margin:10px 0 0;min-height:18px}
+@media(max-width:760px){.premium-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.premium-grid{grid-template-columns:1fr}.subnet-fields{grid-template-columns:1fr 1fr}.subnet-fields label:first-child{grid-column:1/-1}.subnet-fields button{grid-column:1/-1}.subnet-result{grid-template-columns:1fr 1fr}}
+
   </style>
 </head>
 <body>
@@ -222,7 +244,7 @@ html[dir="rtl"] .terminal-screen,html[dir="rtl"] .terminal-input-row{direction:l
 <header class="topbar"><div class="wrap nav">
   <a class="brand" href="#home" aria-label="Muthanna Tareq home"><img class="brand-logo" src="assets/mt-logo.jpg" alt="MT logo"><span class="brand-name">Muthanna Tareq<small>Network &amp; IT Portfolio</small></span></a>
   <nav class="navlinks" id="navlinks" aria-label="Main navigation">
-    <a href="#about" data-en="About" data-ar="نبذة عني">About</a><a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a><a href="#projects" data-en="Projects" data-ar="المشاريع">Projects</a><a href="#education" data-en="Education" data-ar="التعليم">Education</a><a href="#career" data-en="Career" data-ar="المسار المهني">Career</a><a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
+    <a href="#about" data-en="About" data-ar="نبذة عني">About</a><a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a><a href="#projects" data-en="Projects" data-ar="المشاريع">Projects</a><a href="#network-lab" data-en="Network Lab" data-ar="مختبر الشبكات">Network Lab</a><a href="#certifications" data-en="Learning" data-ar="التطوير المهني">Learning</a><a href="#education" data-en="Education" data-ar="التعليم">Education</a><a href="#career" data-en="Career" data-ar="المسار المهني">Career</a><a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
   </nav>
   <div class="actions"><button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light mode" title="Switch theme">☀</button><button class="lang" id="langBtn" type="button" aria-label="Switch language">العربية</button><button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button></div>
 </div></header>
@@ -290,6 +312,25 @@ html[dir="rtl"] .terminal-screen,html[dir="rtl"] .terminal-input-row{direction:l
 <button class="lab-device" type="button" data-device="server" aria-pressed="false"><span class="lab-device-icon">▤</span><b>SERVER</b><small>Services</small></button></div>
 <div class="lab-info" aria-live="polite"><div class="lab-info-mark" id="labInfoMark">⌁</div><div><span class="lab-info-label" data-en="DEVICE OVERVIEW" data-ar="معلومات الجهاز">DEVICE OVERVIEW</span><h3 id="labInfoTitle">Router</h3><p id="labInfoText" data-en="Connects different networks and forwards packets using routing information. It commonly acts as the gateway between a local network and other networks." data-ar="يربط بين الشبكات المختلفة ويوجه حزم البيانات اعتماداً على معلومات التوجيه، وغالباً يعمل بوابةً بين الشبكة المحلية والشبكات الأخرى.">Connects different networks and forwards packets using routing information. It commonly acts as the gateway between a local network and other networks.</p><div class="lab-tags" id="labInfoTags"><span>Routing</span><span>IP forwarding</span><span>Gateway</span></div></div></div>
 <div class="lab-foot"><span><i></i><span data-en="ILLUSTRATIVE MODEL · NOT A LIVE NETWORK" data-ar="نموذج توضيحي · ليس اتصالاً حقيقياً">ILLUSTRATIVE MODEL · NOT A LIVE NETWORK</span></span><span>MT / NET-LAB</span></div></div>
+
+<div class="subnet-tool" aria-labelledby="subnetTitle">
+  <div class="subnet-head"><h3 id="subnetTitle" data-en="IPv4 subnet calculator" data-ar="حاسبة تقسيم شبكات IPv4">IPv4 subnet calculator</h3><span class="lab-info-label" data-en="PRACTICE TOOL" data-ar="أداة تدريبية">PRACTICE TOOL</span></div>
+  <div class="subnet-fields">
+    <label><span data-en="IPv4 address" data-ar="عنوان IPv4">IPv4 address</span><input id="subnetIp" type="text" inputmode="decimal" value="192.168.10.10" autocomplete="off" spellcheck="false" aria-label="IPv4 address"></label>
+    <label><span data-en="Prefix length" data-ar="طول البادئة">Prefix length</span><input id="subnetPrefix" type="number" min="0" max="32" value="24" inputmode="numeric" aria-label="CIDR prefix length"></label>
+    <button id="subnetCalculate" type="button" data-en="Calculate" data-ar="احسب">Calculate</button>
+  </div>
+  <div class="subnet-result" id="subnetResult" aria-live="polite">
+    <div><small data-en="Network address" data-ar="عنوان الشبكة">Network address</small><strong id="subnetNetwork">192.168.10.0</strong></div>
+    <div><small data-en="Broadcast address" data-ar="عنوان البث">Broadcast address</small><strong id="subnetBroadcast">192.168.10.255</strong></div>
+    <div><small data-en="Subnet mask" data-ar="قناع الشبكة">Subnet mask</small><strong id="subnetMask">255.255.255.0</strong></div>
+    <div><small data-en="Usable hosts" data-ar="الأجهزة القابلة للاستخدام">Usable hosts</small><strong id="subnetHosts">254</strong></div>
+    <div><small data-en="First host" data-ar="أول عنوان جهاز">First host</small><strong id="subnetFirst">192.168.10.1</strong></div>
+    <div><small data-en="Last host" data-ar="آخر عنوان جهاز">Last host</small><strong id="subnetLast">192.168.10.254</strong></div>
+  </div>
+  <p class="subnet-error" id="subnetError" role="status"></p>
+</div>
+
 </div></section>
 <section class="section" id="projects"><div class="wrap">
   <div class="section-head"><div><div class="kicker" data-en="03 / Selected work" data-ar="03 / مشاريع مختارة">03 / Selected work</div><h2 data-en="Projects in motion." data-ar="مشاريع قيد التطوير والإنجاز.">Projects in motion.</h2></div><p class="section-intro" data-en="A mix of ongoing explorations and application projects. More technical details and source links will be added as they become available." data-ar="مجموعة من المشاريع قيد التطوير وأخرى تطبيقية. ستضاف التفاصيل التقنية وروابط المصدر عند توفرها.">A mix of ongoing explorations and application projects. More technical details and source links will be added as they become available.</p></div>
@@ -304,6 +345,17 @@ html[dir="rtl"] .terminal-screen,html[dir="rtl"] .terminal-input-row{direction:l
     <article class="surface project" data-category="apps"><div class="project-top"><span class="project-no">PROJECT / 07</span><span class="pill done" data-en="Built project" data-ar="مشروع منفذ">Built project</span></div><h3>Inventory Management Application</h3><p data-en="An application project for managing inventory." data-ar="مشروع تطبيق لإدارة المخزون.">An application project for managing inventory.</p><div class="tags"><span class="tag">Inventory</span></div></article>
   </div>
 </div></section>
+
+<section class="section" id="certifications"><div class="wrap">
+  <div class="section-head"><div><div class="kicker" data-en="06 / Professional development" data-ar="06 / التطوير المهني">06 / Professional development</div><h2 data-en="Learning with direction." data-ar="تعلم بخطوات واضحة.">Learning with direction.</h2></div><p class="section-intro" data-en="A transparent view of current learning priorities and verified credentials." data-ar="عرض واضح لمجالات التعلم الحالية والشهادات التي تم التحقق منها.">A transparent view of current learning priorities and verified credentials.</p></div>
+  <div class="premium-grid">
+    <article class="premium-card"><div class="premium-icon">⌁</div><h3 data-en="Network Engineering" data-ar="هندسة الشبكات">Network Engineering</h3><p data-en="Routing, switching, VLAN design, IP addressing, network services, and hands-on troubleshooting labs." data-ar="التوجيه والتحويل وتصميم VLAN وعنونة IP وخدمات الشبكات ومختبرات استكشاف الأعطال العملية.">Routing, switching, VLAN design, IP addressing, network services, and hands-on troubleshooting labs.</p></article>
+    <article class="premium-card"><div class="premium-icon">⬡</div><h3 data-en="Network Security" data-ar="أمن الشبكات">Network Security</h3><p data-en="Firewall fundamentals, access control, VPN concepts, and secure connectivity between locations." data-ar="أساسيات الجدران النارية والتحكم بالوصول ومفاهيم VPN والاتصال الآمن بين المواقع.">Firewall fundamentals, access control, VPN concepts, and secure connectivity between locations.</p></article>
+    <article class="premium-card"><div class="premium-icon">⌘</div><h3 data-en="Automation & AI" data-ar="الأتمتة والذكاء الاصطناعي">Automation & AI</h3><p data-en="Python foundations, workflow automation, AI agents, and practical technical support use cases." data-ar="أساسيات Python وأتمتة سير العمل والوكلاء الذكيون وحالات الاستخدام العملية للدعم التقني.">Python foundations, workflow automation, AI agents, and practical technical support use cases.</p></article>
+  </div>
+  <div class="credential-note"><div class="premium-icon">✦</div><div><b data-en="Verified certificates will be listed here" data-ar="ستُعرض الشهادات المعتمدة هنا">Verified certificates will be listed here</b><p data-en="Only certificates and course completions supplied and verified by Muthanna will be published. No unverified credentials are displayed." data-ar="لن تُنشر إلا الشهادات والدورات التي يضيفها مثنى ويمكن التحقق منها، ولن نعرض مؤهلات غير موثقة.">Only certificates and course completions supplied and verified by Muthanna will be published. No unverified credentials are displayed.</p></div></div>
+</div></section>
+
 <section class="section" id="education"><div class="wrap">
   <div class="section-head"><div><div class="kicker" data-en="04 / Education" data-ar="04 / التعليم">04 / Education</div><h2 data-en="Building the foundation." data-ar="بناء الأساس العلمي.">Building the foundation.</h2></div></div>
   <div class="education"><div class="surface edu-card"><div class="edu-mark">✦</div><div><h3 data-en="Bachelor's Degree in Information Technology" data-ar="بكالوريوس تقنية المعلومات">Bachelor's Degree in Information Technology</h3><p data-en="University of Taiz – Al-Turbah Branch" data-ar="جامعة تعز – فرع التربة">University of Taiz – Al-Turbah Branch</p><p data-en="Level 4 · Currently studying" data-ar="المستوى الرابع · طالب حالياً">Level 4 · Currently studying</p></div></div><div class="surface edu-card"><div class="edu-mark">⌖</div><div><h3 data-en="Based in Taiz, Yemen" data-ar="مقيم في تعز، اليمن">Based in Taiz, Yemen</h3><p data-en="Interested in networking, IT support, and practical technology projects." data-ar="مهتم بالشبكات والدعم الفني والمشاريع التقنية العملية.">Interested in networking, IT support, and practical technology projects.</p></div></div></div>
@@ -396,6 +448,29 @@ html[dir="rtl"] .terminal-screen,html[dir="rtl"] .terminal-input-row{direction:l
     const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -35px 0px'});
     revealItems.forEach(el=>revealObserver.observe(el));
   }
+
+
+  // IPv4/CIDR practice calculator. This is an educational client-side tool.
+  (function(){
+    const ipField=document.getElementById('subnetIp'),prefixField=document.getElementById('subnetPrefix'),run=document.getElementById('subnetCalculate'),error=document.getElementById('subnetError');
+    if(!ipField||!prefixField||!run)return;
+    const out={network:document.getElementById('subnetNetwork'),broadcast:document.getElementById('subnetBroadcast'),mask:document.getElementById('subnetMask'),hosts:document.getElementById('subnetHosts'),first:document.getElementById('subnetFirst'),last:document.getElementById('subnetLast')};
+    const ipText=n=>[n>>>24,(n>>>16)&255,(n>>>8)&255,n&255].join('.');
+    function calculate(){
+      const parts=ipField.value.trim().split('.');
+      const prefix=Number(prefixField.value);
+      if(parts.length!==4||parts.some(x=>!/^\d{1,3}$/.test(x)||Number(x)>255)||!Number.isInteger(prefix)||prefix<0||prefix>32){error.textContent=document.documentElement.dir==='rtl'?'أدخل عنوان IPv4 صحيحاً وبادئة من 0 إلى 32.':'Enter a valid IPv4 address and a prefix from 0 to 32.';return}
+      const ip=parts.reduce((n,x)=>((n*256)+Number(x))>>>0,0);
+      const mask=prefix===0?0:(0xffffffff<<(32-prefix))>>>0;
+      const network=(ip&mask)>>>0,broadcast=(network|(~mask>>>0))>>>0;
+      const total=2**(32-prefix),hosts=prefix>=31?total:Math.max(0,total-2);
+      out.network.textContent=ipText(network);out.broadcast.textContent=ipText(broadcast);out.mask.textContent=ipText(mask);out.hosts.textContent=hosts.toLocaleString();
+      out.first.textContent=prefix>=31?ipText(network):ipText((network+1)>>>0);
+      out.last.textContent=prefix>=31?ipText(broadcast):ipText((broadcast-1)>>>0);
+      error.textContent='';
+    }
+    run.addEventListener('click',calculate);ipField.addEventListener('keydown',e=>{if(e.key==='Enter')calculate()});prefixField.addEventListener('keydown',e=>{if(e.key==='Enter')calculate()});calculate();
+  })();
 
 </script>
 </body></html>
