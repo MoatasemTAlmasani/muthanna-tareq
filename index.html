@@ -138,7 +138,36 @@
       html[dir="rtl"] .footer-whatsapp{margin-inline:auto}
       html[dir="rtl"] .footer-copy{justify-content:center}
     }
-  </style>
+
+    /* First-impression engineering detail: animated network topology */
+    .topology-panel{margin-top:16px;padding:15px 14px 12px;border:1px solid rgba(92,225,212,.2);border-radius:16px;background:linear-gradient(135deg,rgba(5,15,29,.58),rgba(20,43,65,.35));overflow:hidden}
+    .topology-head,.topology-foot,.topology-foot>span{display:flex;align-items:center}
+    .topology-head{gap:8px;color:var(--cyan);font:800 9px/1.4 Manrope,Cairo,sans-serif;letter-spacing:.12em}
+    .topology-code{margin-inline-start:auto;color:var(--muted);font-size:8px;letter-spacing:.08em}
+    .topology-led,.topology-foot i{width:6px;height:6px;flex:none;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+    .topology-flow{display:flex;align-items:center;justify-content:space-between;gap:5px;padding:18px 2px 15px}
+    .topology-node{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:54px;color:var(--text);font:800 8px/1.2 Manrope,Cairo,sans-serif;letter-spacing:.06em}
+    .node-symbol{display:grid;place-items:center;width:35px;height:35px;border:1px solid rgba(92,225,212,.32);border-radius:11px;background:rgba(92,225,212,.08);color:var(--cyan);font-size:19px;box-shadow:0 0 18px rgba(92,225,212,.06);animation:nodeGlow 3.2s ease-in-out infinite}
+    .switch-symbol{animation-delay:.7s}.server-symbol{animation-delay:1.4s}
+    .topology-node small{font:600 8px/1.2 Manrope,Cairo,sans-serif;color:var(--muted);letter-spacing:.12em}
+    .topology-link{position:relative;display:block;height:1px;flex:1;min-width:12px;background:linear-gradient(90deg,rgba(92,225,212,.15),rgba(92,225,212,.55),rgba(92,225,212,.15))}
+    .topology-link i{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:#a4fff1;box-shadow:0 0 10px 2px rgba(92,225,212,.8);animation:packetTravel 2.1s linear infinite}
+    .topology-link:nth-of-type(2) i{animation-delay:1.05s}
+    .topology-foot{justify-content:space-between;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font:700 8px/1.3 Manrope,Cairo,sans-serif;letter-spacing:.09em}
+    .topology-foot>span{gap:7px}
+    .topology-foot i{width:5px;height:5px;animation:statusPulse 2s infinite}
+    @keyframes packetTravel{from{left:0;opacity:0}12%{opacity:1}88%{opacity:1}to{left:calc(100% - 5px);opacity:0}}
+    @keyframes nodeGlow{0%,100%{box-shadow:0 0 0 rgba(92,225,212,0);border-color:rgba(92,225,212,.25)}50%{box-shadow:0 0 19px rgba(92,225,212,.18);border-color:rgba(92,225,212,.7)}}
+    .hero>div:first-child .eyebrow{animation:heroEnter .7s both}
+    .hero>div:first-child h1{animation:heroEnter .75s .1s both}
+    .hero>div:first-child .lead{animation:heroEnter .75s .2s both}
+    .hero>div:first-child .hero-cta{animation:heroEnter .75s .3s both}
+    .hero-card{animation:heroEnter .9s .15s both}
+    @keyframes heroEnter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    body[data-theme="light"] .topology-panel{background:linear-gradient(135deg,rgba(232,243,250,.9),rgba(245,250,255,.8));border-color:rgba(8,127,131,.2)}
+    @media(max-width:600px){.topology-panel{padding:13px 10px}.topology-flow{gap:3px}.topology-node{min-width:48px}.node-symbol{width:32px;height:32px}}
+    @media(prefers-reduced-motion:reduce){.topology-node .node-symbol,.topology-link i,.topology-foot i,.hero>div:first-child .eyebrow,.hero>div:first-child h1,.hero>div:first-child .lead,.hero>div:first-child .hero-cta,.hero-card{animation:none!important;opacity:1;transform:none}}
+\n  </style>
 </head>
 <body>
 <header class="topbar"><div class="wrap nav">
@@ -165,6 +194,17 @@
     <p data-en="Learning by building, testing, and solving real-world problems." data-ar="أتعلم من خلال البناء والتجربة وحل المشكلات العملية.">Learning by building, testing, and solving real-world problems.</p>
     <div class="status"><i></i><span data-en="Open to learning and entry-level opportunities" data-ar="منفتح على فرص التعلم والوظائف المبتدئة">Open to learning and entry-level opportunities</span></div>
     <div class="quick"><div><b>Networking</b><small data-en="Routing & Switching" data-ar="التوجيه والتحويل">Routing & Switching</small></div><div><b>IT Support</b><small data-en="Troubleshooting" data-ar="حل المشكلات التقنية">Troubleshooting</small></div><div><b>Python · Go · Java</b><small data-en="Programming" data-ar="البرمجة">Programming</small></div><div><b>AI Agents</b><small data-en="Exploration & automation" data-ar="استكشاف وأتمتة">Exploration & automation</small></div></div>
+    <div class="topology-panel" aria-label="Decorative network topology illustration">
+      <div class="topology-head"><span class="topology-led"></span><span data-en="NETWORK LAB / TOPOLOGY" data-ar="مختبر الشبكات / مخطط الاتصال">NETWORK LAB / TOPOLOGY</span><span class="topology-code">NET_01</span></div>
+      <div class="topology-flow">
+        <div class="topology-node"><span class="node-symbol router-symbol">⌁</span><b>ROUTER</b><small>WAN</small></div>
+        <span class="topology-link"><i></i></span>
+        <div class="topology-node"><span class="node-symbol switch-symbol">▦</span><b>SWITCH</b><small>LAN</small></div>
+        <span class="topology-link"><i></i></span>
+        <div class="topology-node"><span class="node-symbol server-symbol">▤</span><b>SERVER</b><small>HOST</small></div>
+      </div>
+      <div class="topology-foot"><span><i></i><span data-en="CONNECTED SYSTEMS" data-ar="أنظمة مترابطة">CONNECTED SYSTEMS</span></span><span>OSI · TCP/IP</span></div>
+    </div>
   </aside>
 </section>
 <section class="section" id="about"><div class="wrap">
