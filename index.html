@@ -31,7 +31,7 @@
     <div class="eyebrow"><span class="dot"></span><span data-en="Technology · Networks · Intelligent Automation" data-ar="التقنية · الشبكات · الأتمتة الذكية">Technology · Networks · Intelligent Automation</span></div>
     <h1><span data-en="Muthanna" data-ar="مثنى">Muthanna</span><br><span data-en="Tareq." data-ar="طارق.">Tareq.</span></h1>
     <p class="lead" data-en="Junior Network Engineer and IT Support enthusiast exploring reliable infrastructure, practical troubleshooting, and AI-powered automation." data-ar="مهتم بهندسة الشبكات والدعم الفني، وأسعى إلى بناء بنية تقنية موثوقة وتطوير مهارات استكشاف الأعطال والأتمتة باستخدام الذكاء الاصطناعي.">Junior Network Engineer and IT Support enthusiast exploring reliable infrastructure, practical troubleshooting, and AI-powered automation.</p>
-    <div class="hero-cta"><a class="btn primary" href="#projects" data-en="Explore my work ↗" data-ar="استكشف مشاريعي ↗">Explore my work ↗</a><a class="btn" href="mailto:muthannaalmasani@gmail.com" data-en="Get in touch" data-ar="تواصل معي">Get in touch</a></div>
+    <div class="hero-cta"><a class="btn primary" href="#projects" data-en="Explore my work ↗" data-ar="استكشف مشاريعي ↗">Explore my work ↗</a><button class="btn" id="cvBtn" type="button" data-en="Download CV ↓" data-ar="تحميل السيرة الذاتية ↓">Download CV ↓</button><a class="btn" href="mailto:muthannaalmasani@gmail.com" data-en="Get in touch" data-ar="تواصل معي">Get in touch</a></div>
   </div>
   <aside class="hero-card">
     <div class="monogram">MT</div><h2 data-en="Technology in progress." data-ar="رحلة مستمرة في التقنية.">Technology in progress.</h2>
@@ -88,6 +88,7 @@
   let lang='en';
   function setLanguage(next){lang=next;const ar=lang==='ar';body.lang=lang;body.dir=ar?'rtl':'ltr';document.documentElement.lang=lang;document.documentElement.dir=body.dir;document.querySelectorAll('[data-en][data-ar]').forEach(el=>{el.innerHTML=el.dataset[lang]});langBtn.textContent=ar?'English':'العربية';langBtn.setAttribute('aria-label',ar?'Switch to English':'التبديل إلى العربية');document.title=ar?'مثنى طارق — الشبكات وتقنية المعلومات':'Muthanna Tareq — Network & IT Portfolio'}
   langBtn.addEventListener('click',()=>setLanguage(lang==='en'?'ar':'en'));
+  document.getElementById('cvBtn').addEventListener('click',()=>alert(lang==='ar'?'السيرة الذاتية قيد الإعداد. سيتم تفعيل التحميل فور إضافة ملف PDF.':'The CV is being prepared. Download will be enabled as soon as the PDF is added.'));
   menuBtn.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.textContent=open?'✕':'☰'});
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰'}));
   document.getElementById('year').textContent=new Date().getFullYear();
